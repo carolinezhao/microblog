@@ -1,4 +1,4 @@
-/* index */
+/* index，user */
 body {
 	padding: 50px 5%;
 	/* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
@@ -10,4 +10,17 @@ body {
  {
 	border-radius: .25rem;
 	margin-bottom: 10px
+}
+
+/* say.ejs */
+/* textarea */
+#input-microblog {
+	resize: none;
+	width: 80%;
+	margin-bottom: 10px;
+	white-space: pre-wrap;
+}
+
+#send-microblog {
+	float: right;
 }
