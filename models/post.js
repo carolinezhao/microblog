@@ -105,7 +105,11 @@ Post.get = function get(username, callback) {
                 // 封装 posts 为 Post 对象
                 var posts = []
                 docs.forEach(function (doc, index) {
-                    var post = new Post(doc.user, doc.post, doc.time)
+                    var content = doc.post
+                    if (content.indexOf("\r\n") !== -1) {
+                        content = content.replace(/(\r\n)+/g,"<br>")
+                    }                    
+                    var post = new Post(doc.user, content, doc.time)
                     posts.push(post)
                 })
                 callback(null, posts)

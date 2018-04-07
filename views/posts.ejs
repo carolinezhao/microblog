@@ -4,9 +4,10 @@
     <% } %>
         <div class="col-md-4 card">
             <div class="card-body">
+            <!-- <div><%= JSON.stringify(post) %></div> -->
             <h3>@ <a href="/u/<%= post.user %>"><%= post.user %></a></h3>
             <p><small><%= post.time %></small></p>
-            <p><%= post.post %></p>
+            <p><%- post.post %></p>
         </div>
         </div>
     <% if (index % 3 === 2) { %>
