@@ -7,7 +7,11 @@
             <!-- <div><%= JSON.stringify(post) %></div> -->
             <h3>@ <a href="/u/<%= post.user %>"><%= post.user %></a></h3>
             <p><small><%= post.time %></small></p>
-            <p><%- post.post %></p>
+            <!-- 转换 \r\n 为 br 时，用此方案 -->
+            <!-- <p><%- post.post %></p> -->
+            <!-- 不转换时，用此方案 -->
+            <p style="white-space: pre-wrap;"><%- post.post %></p>
+            <!-- <pre><%- post.post %></pre> -->
         </div>
         </div>
     <% if (index % 3 === 2) { %>
