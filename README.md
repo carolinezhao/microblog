@@ -589,73 +589,11 @@ MongoDB 的数据格式是 BSON (Binary JSON)，是 JSON 的一个扩展，因�
 对于查询操作，只需要指定文档的任何一个属性，就可以在数据库中筛选出满足条件的所有文档。<br>
 为了加快查询，MongoDB 也对文档实现了索引，这一点和 SQL 数据库一样。
 
+[基本概念解析](http://www.runoob.com/mongodb/mongodb-databases-documents-collections.html)
+
 ### 连接数据库
 
-在 [MongoDB 官网](https://www.mongodb.com/) 下载 Community 版本
-
-[安装和运行步骤](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/)
-
-把解压后的文件夹放在目标路径下 `~/Workplace/mongodb`。文件结构：
-
-    mongodb
-        ├── 4个其他文件
-        └── bin
-            └── 可执行文件们
-
-The MongoDB binaries are in the bin/ directory of the archive. To ensure that the binaries are in your PATH, you can modify your PATH. 
-
-只有把路径添加到 PATH 变量中才能全局使用，否则在其他终端窗口中不可用，或在不同文件目录下也不可用。
-
-两种检查方法：
-
-查看 PATH 变量包含哪些路径，返回的结果是以冒号分隔的路径，比如 `/usr/local/bin:/usr/bin:/bin:...`，如果不包含目标路径则需要手动添加。
-
-    $ echo $PATH
-
-查看路径是否包含在 PATH 变量中，返回 `not found` 则需要手动添加该路径。
-
-    $ which mongo
-
-在 rc 文件中手动添加路径，如果是 bash 终端，则 `$ open ~/.bashrc` 修改；如果是 zsh 终端，则 `$ open ~/.zshrc` 修改。各终端只读取自己的文件。用实际路径替换其中的 `<directory>`，查看所在路径 `$ pwd`。
-
-`export PATH=<directory>/bin:$PATH`
-
-添加后以下命令使其立即生效，或者新开一个终端窗口 (自动执行 source)。如果修改了 .bashrc 文件，使用 zsh 终端打开，则必须手动执行该命令。
-
-    $ source ~/.zshrc
-
-确认是否添加成功，若成功则返回所在路径 `.../mongodb/bin/mongo`
-
-    $ which mongo
-
---
-
-Run MongoDB
-
-By default, the mongod process uses the `/data/db` directory.<br>
-也可以使用其他路径，需要手动配置，见文档。<br>
-以 `/` 开头意味着在 root 目录下创建文件，需要加 `sudo`。
-
-    $ sudo mkdir -p /data/db
-
-To run MongoDB, run the mongod process at the system prompt.<br>
-使用 mongod 也需要加 `sudo`。
-
-    $ sudo mongod
-
-看到打印以下语句则说明成功启动
-
-`[initandlisten] waiting for connections on port 27017`
-
-操作数据库
-
-Start a mongo shell on the same host machine as the mongod. Use the --host command line option to specify the localhost address and port that the mongod listens on.
-
-在新窗口中执行此命令，因为刚才的命令是持续运行的。
-
-    $ mongo --host 127.0.0.1:27017
-
-To stop MongoDB, press `Control+C` in the terminal where the mongod instance is running.
+[MongoDB 的安装、配置、运行](https://github.com/carolinezhao/microblog/blob/master/mongodb.md)
 
 --
 
@@ -676,9 +614,7 @@ Download the [MongoDB Node.JS Driver](https://mongodb.github.io/node-mongodb-nat
 
 另一个常用的是 [Mongoose](http://mongoosejs.com/docs/index.html) (还没研究)
 
-    $ npm install mongoose
-
-"mongoose": "^5.0.12"
+--
 
 在工程目录中创建 _settings.js_，用于保存数据库的连接信息。
 
@@ -883,7 +819,7 @@ router.post('/post', ...)
 --
 
 bug: /u/:user 访问 posts.ejs 报错，但是从首页访问没问题。
-```
+```shell
 ReferenceError: /Users/zhaoximeng/Workplace/front-end-learning/nodejs/microblog/views/user.ejs:25
  >> 25|     <% include posts.ejs %>
 
@@ -897,7 +833,7 @@ fix: /u/:user 得渲染函数内的属性写成了 post，应为 posts
 --
 
 test: 发布微博，数据库查看所有微博 db.posts.find()
-```
+```shell
 { 
     "_id" : ObjectId("5ac3685cd7e0c037a36d8b09"), 
     "user" : "bear", 
@@ -906,7 +842,7 @@ test: 发布微博，数据库查看所有微博 db.posts.find()
 }
 ```
 bug：每个用户可以发一条微博，发第二条时报错
-```
+```shell
 {
     "code":11000,
     "index":0,
