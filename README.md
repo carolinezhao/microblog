@@ -878,10 +878,6 @@ router.get('/u/:user', ...)
 * say.ejs 发表微博的表单
 * posts.ejs 按照行列显示传入的 posts 的内容
 
---
-
-posts.ejs 是怎么工作的？
-
 ### 首页
 
 在首页路由中加入 Post.get 方法，读取所有用户微博，传递给页面 posts 属性，按时间从新到旧的顺序。
