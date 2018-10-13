@@ -1,3 +1,7 @@
+> README 5.6.1 访问数据库的内容
+
+# MongoDB 的安装、配置、运行
+
 ## 下载
 
 在 [MongoDB 官网](https://www.mongodb.com/) 下载 Community 版本
@@ -87,17 +91,28 @@ To stop MongoDB, press `Control+C` in the terminal where the mongod instance is 
 
     use microblog
 
-查看已创建的集合中的内容
+查看已创建的集合中的内容 `db.<collections>.find()`
 
     db.users.find()
     db.posts.find()
+
+以整齐的格式显示
+
+    db.posts.find().pretty()
+
+设置查找规则
+
+    db.posts.find({user:"caroline"})
+
+只返回一个文档
+
+    db.users.findOne()
 
 删除集合中的内容
 
     db.users.drop()
     db.posts.drop()
 
-## 项目
+## IDE/GUI
 
-数据库 db: 'microblog' 和 host: 'localhost' 是写在 settings 文件中的。
-数据库如何读取？
+[Robo 3T](https://robomongo.org/)

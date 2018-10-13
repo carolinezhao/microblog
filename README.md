@@ -4,6 +4,10 @@
 
 [前四章 Node.js 基础知识](https://github.com/carolinezhao/front-end-learning/tree/master/nodejs)
 
+## Screenshot
+
+<img src="microblog.png" style="width: 50%">
+
 ## Index
 
 - 5.1 背景知识
@@ -20,6 +24,8 @@
 <br>
 
 ## 5.1 背景知识
+
+> 5.1 中的示例代码也见 front-end-learning/nodejs
 
 Node.js 和 PHP、Perl、ASP、JSP 一样，都是为了由服务器动态生成 HTML 页面。
 
@@ -620,9 +626,7 @@ Download the [MongoDB Node.JS Driver](https://mongodb.github.io/node-mongodb-nat
 
 在 models 子目录中创建 _db.js_，创建数据库连接。<br>
 书中的方法不再支持 (bug: mongodb.open() is not a function) _db-old.js_<br>
-[搭配 3.0 版本 mongodb 的方法](http://mongodb.github.io/node-mongodb-native/3.0/tutorials/connect/)
-
-未完成：抽取通用部分，[参考](https://stackoverflow.com/questions/24621940/how-to-properly-reuse-connection-to-mongodb-across-nodejs-application-and-module)
+[搭配 3.0 版本 mongodb 的方法](http://mongodb.github.io/node-mongodb-native/3.0/tutorials/connect/)，提取为通用模块 _db.js_
 
 ### 5.6.2 会话支持 Session
 

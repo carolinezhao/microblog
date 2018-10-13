@@ -1,6 +1,6 @@
 <% posts.forEach(function (post, index) {
     if (index % 3 === 0) { %>
-        <div class="row">
+    <div class="row">
     <% } %>
         <div class="col-md-4 card">
             <div class="card-body">
@@ -12,13 +12,12 @@
             <!-- 不转换时，用此方案 -->
             <p style="white-space: pre-wrap;"><%- post.post %></p>
             <!-- <pre><%- post.post %></pre> -->
-        </div>
+            </div>
         </div>
     <% if (index % 3 === 2) { %>
-        </div><!-- end row -->
+    </div><!-- end row -->
     <% } %>
 <% }) %>
 <% if (posts.length % 3 !== 0) { %>
     </div><!-- end row -->
 <% } %>
-    
