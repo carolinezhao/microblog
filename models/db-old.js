@@ -13,5 +13,5 @@ module.exports = new Db(settings.db, new Server(settings.host, 27017, {}))
 
 // 相当于拆开写
 // var server = new Server(settings.host, 27017, {});
-// var db = new Db(settings.db, server);
-// module.exports = db;
+// var mongodb = new Db(settings.db, server);
+// module.exports = mongodb;

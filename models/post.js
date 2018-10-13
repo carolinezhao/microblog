@@ -1,14 +1,6 @@
-// var mongodb= require('./db-old') // 旧版不可用
+// var mongodb = require('./db-old') // 旧版不可用
 
-// var mongoUtil = require('./db')
-// var db = mongoUtil.getDb()
-
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-// Connection URL
-const url = 'mongodb://localhost:27017';
-// Database Name
-const dbName = 'microblog';
+var mongoUtil = require('./db')
 
 function Post(username, post, time) {
     this.user = username
@@ -31,13 +23,7 @@ Post.prototype.save = function save(callback) {
     }
     console.log(post)
 
-    // Use connect method to connect to the server
-    // mongoUtil.connectToServer(function(err) {
-    MongoClient.connect(url, function (err, client) {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        const db = client.db(dbName);
-
+    mongoUtil.connectToServer(function (err, client, db) {
         if (err) {
             return callback(err)
         }
@@ -54,7 +40,7 @@ Post.prototype.save = function save(callback) {
             // collection.ensureIndex('user') //书中的写法，也可以用
             collection.createIndex('user', {
                 unique: false
-            }, function(err, result) {
+            }, function (err, result) {
                 console.log(JSON.stringify(err)) //null
                 console.log(result) // user_1         
             })
@@ -75,12 +61,7 @@ Post.prototype.save = function save(callback) {
 
 // 接口2：对象构造函数的方法，用于从数据库中获取微博，可以获取全部内容，也可以按指定用户获取。
 Post.get = function get(username, callback) {
-    // mongoUtil.connectToServer(function(err) {
-    MongoClient.connect(url, function (err, client) {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        const db = client.db(dbName);
-
+    mongoUtil.connectToServer(function (err, client, db) {
         if (err) {
             return callback(err)
         }
@@ -110,7 +91,7 @@ Post.get = function get(username, callback) {
                     //     content = content.replace(/(\r\n)+/g,"<br/>")
                     // }                    
                     // var post = new Post(doc.user, content, doc.time)
-                    var post = new Post(doc.user, doc.post, doc.time)                   
+                    var post = new Post(doc.user, doc.post, doc.time)
                     posts.push(post)
                 })
                 callback(null, posts)

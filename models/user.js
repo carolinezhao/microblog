@@ -1,14 +1,6 @@
-// var mongodb= require('./db-old') // 旧版不可用
+// var mongodb = require('./db-old') // 旧版不可用
 
-// var mongoUtil = require('./db')
-// var db = mongoUtil.getDb()
-
-const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
-// Connection URL
-const url = 'mongodb://localhost:27017';
-// Database Name
-const dbName = 'microblog';
+var mongoUtil = require('./db')
 
 function User(user) {
     this.name = user.name
@@ -24,16 +16,8 @@ User.prototype.save = function save(callback) {
         password: this.password
     }
     console.log(user)
-    // Use connect method to connect to the server
 
-    // mongoUtil.connectToServer(function(err) {
-    MongoClient.connect(url, function (err, client) {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        const db = client.db(dbName);
-        // console.log(client)
-        // console.log(db)
-
+    mongoUtil.connectToServer(function (err, client, db) {
         if (err) {
             return callback(err)
         }
@@ -92,12 +76,7 @@ User.prototype.save = function save(callback) {
 
 // 接口2：对象构造函数的方法，用于从数据库中查找指定的用户。
 User.get = function get(username, callback) {
-    // mongoUtil.connectToServer(function(err) {
-    MongoClient.connect(url, function (err, client) {
-        assert.equal(null, err);
-        console.log("Connected successfully to server");
-        const db = client.db(dbName);
-
+    mongoUtil.connectToServer(function (err, client, db) {
         if (err) {
             return callback(err)
         }
